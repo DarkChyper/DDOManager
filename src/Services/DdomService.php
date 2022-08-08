@@ -102,8 +102,6 @@ class DdomService implements LoggerAwareInterface
             // save the new ip
             $this->ipRepository->add($newIp, true);
             $this->addLog('New ip \''.$newIp->getLabel().'\' saved at '.$newIp->getUpdateAt()->format('Y-m-d H:i:s'), 'info');
-
-
         } else {
             $this->addLog('Same IP, nothing to do. Last update at :'.$ipFromDb[0]->getUpdateAt()->format('Y-m-d H:i:s'), 'info');
         }
@@ -133,7 +131,6 @@ class DdomService implements LoggerAwareInterface
             ->setLabel($datas['ips'][0])
             ->setCheckedAt(new \DateTime())
             ->setUpdateAt(new \DateTimeImmutable());
-
     }
 
     protected function saveCurrentDnsZone(Domain $domain): void
@@ -162,14 +159,14 @@ class DdomService implements LoggerAwareInterface
         return $content[0];
     }
 
-    protected function getActualDnsAInfo(string $domainLabel, int $subDomainId): array
+    protected function getActualDnsAInfo(string $domainLabel, string $subDomainId): array
     {
         $uri = sprintf(self::API_OVH_DOMAIN_GET_DOMAIN_ZONE_RECORD_ID_URI, $domainLabel, $subDomainId);
 
         return $this->api->get($uri);
     }
 
-    protected function saveNewDnsAInfo(string $domainLabel, int $subDomainId, array $dnsInfos): void
+    protected function saveNewDnsAInfo(string $domainLabel, string $subDomainId, array $dnsInfos): void
     {
         $uri = sprintf(self::API_OVH_DOMAIN_PUT_DOMAIN_ZONE_RECORD_ID_URI, $domainLabel, $subDomainId);
         $this->api->put($uri, $dnsInfos);
