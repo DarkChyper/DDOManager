@@ -1,6 +1,7 @@
 # DDOManager
 
-DDOManager is a small tool to deal with dynamic IP at home when you need to self-hosting personnal web app.
+DDOManager is a small tool to deal with dynamic IP at home when you need to self-hosting personnal web app.  
+It's based on Symfony project, you need composer to install dependecies.
 
 ## How to use ? 
 
